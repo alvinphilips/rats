@@ -1,6 +1,6 @@
-pub(crate) type VertexComponent = i32;
+pub type VertexComponent = f64;
 
-#[derive(Debug, Default, PartialEq, Eq, Clone, Copy)]
+#[derive(Debug, Default, PartialEq, Clone, Copy)]
 pub struct Vertex {
     pub x: VertexComponent,
     pub y: VertexComponent,
@@ -19,6 +19,21 @@ impl Vertex {
             z: depth
         }
     }
+    pub fn min(self, other: Self) -> Self {
+        Self {
+            x: self.x.min(other.x),
+            y: self.y.min(other.y),
+            z: self.z.min(other.z),
+        }
+    }
+
+    pub fn max(self, other: Self) -> Self {
+        Self {
+            x: self.x.max(other.x),
+            y: self.y.max(other.y),
+            z: self.z.max(other.z),
+        }
+    }
 }
 
 impl core::cmp::PartialOrd for Vertex {
@@ -34,34 +49,6 @@ impl core::cmp::PartialOrd for Vertex {
             return Some(Ordering::Greater)
         }
         None
-    }
-}
-
-impl core::cmp::Ord for Vertex {
-    fn cmp(&self, other: &Self) -> std::cmp::Ordering {
-        // Early return if partial_cmp is not None
-        if let Some(partial) = self.partial_cmp(other) {
-            return partial;
-        }
-
-        // TODO: What does it ever mean to sort Vertices?
-        unimplemented!()
-    }
-
-    fn min(self, other: Self) -> Self {
-        Self {
-            x: self.x.min(other.x),
-            y: self.y.min(other.y),
-            z: self.z.min(other.z),
-        }
-    }
-
-    fn max(self, other: Self) -> Self {
-        Self {
-            x: self.x.max(other.x),
-            y: self.y.max(other.y),
-            z: self.z.max(other.z),
-        }
     }
 }
 

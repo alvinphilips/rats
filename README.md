@@ -1,2 +1,5 @@
 # rats
-rasterize a triangle, silly
+
+#### Video Demo: [](https://uwu.com)
+
+#### Description:

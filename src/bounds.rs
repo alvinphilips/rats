@@ -1,4 +1,4 @@
-use crate::vertex::{Vertex, ContainsPoint};
+use crate::vertex::{Vertex, ContainsPoint, self};
 
 pub trait GetBounds {
     fn get_bounds(&self) -> Bounds;
@@ -41,7 +41,7 @@ impl Bounds {
         let z_size = self.max.z - self.min.z;
 
         // Cannot normalize value :(
-        if z_size == 0 {
+        if z_size == vertex::VertexComponent::default() {
             return 0.
         }
 
