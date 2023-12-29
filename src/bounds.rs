@@ -37,6 +37,7 @@ impl Bounds {
     }
 
     #[allow(dead_code)]
+    #[allow(clippy::unnecessary_cast)]
     pub fn normalized_depth(&self, depth: f64) -> f64 {
         let z_size = self.max.z - self.min.z;
 

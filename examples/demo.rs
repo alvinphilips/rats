@@ -1,11 +1,4 @@
-pub mod prelude;
-pub mod vertex;
-pub mod line;
-pub mod triangle;
-pub mod bounds;
-pub mod renderer;
-
-use crate::prelude::*;
+use rats::prelude::*;
 
 fn main() {
     let triangle = Triangle(

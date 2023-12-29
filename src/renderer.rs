@@ -50,13 +50,14 @@ impl Renderer {
         }
     }
 
+    #[allow(clippy::unnecessary_cast)]
     pub fn draw_triangle(&mut self, triangle: &Triangle) {
         for y in 0..=self.height {
             for x in 0..=self.width {
                 let point = Vertex::new(self.bounds.min.x + x as VertexComponent, self.bounds.min.y + y as VertexComponent);
                 if let Some(mut depth) = triangle.contains_point_with_depth(&point) {
                     depth = self.bounds.normalized_depth(depth);
-                    debug_assert!(depth >= 0. && depth <= 1.);
+
                     let index = (depth * (self.depth_symbols.len() - 1) as f64).round() as usize;
                     // index 0 is whitespace, increase by 1, while making sure we do not exceed bounds
                     let index =  u8::min(1 + index as u8, self.depth_symbols.len() as u8 - 1);
@@ -69,7 +70,6 @@ impl Renderer {
                         }
                     }
                     self.texture[y][x] = index;
-                    // self.texture[y][x] = *self.depth_symbols.get(index).unwrap();
                 }
             }
         }

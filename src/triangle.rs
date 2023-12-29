@@ -4,6 +4,7 @@ use crate::{vertex::{Vertex, ContainsPoint}, bounds::{GetBounds, Bounds}, line::
 pub struct Triangle(pub Vertex, pub Vertex, pub Vertex);
 
 impl Triangle {
+    #[allow(clippy::unnecessary_cast)]
     fn get_point_weights(&self, point: &Vertex) -> (f64, f64) {
         let a = &self.0;
         let b = &self.1;
@@ -28,6 +29,7 @@ impl ContainsPoint for Triangle {
         w1 >= 0. && w2 >= 0. && w1 + w2 <= 1.
     }
 
+    #[allow(clippy::unnecessary_cast)]
     fn contains_point_with_depth(&self, point: &Vertex) -> Option<f64>  {
         let (w1, w2) = self.get_point_weights(point);
         if w1 < 0. || w2 < 0. || w1 + w2 > 1. {

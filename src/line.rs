@@ -12,6 +12,7 @@ impl Line {
         Self(start, end)
     }
 
+    #[allow(clippy::unnecessary_cast)]
     pub fn contains_point_with_threshold(&self, point: &Vertex, threshold: f64) -> bool {
         // TODO: possible division by zero if line is vertical, i.e. x values are the same
         let slope = ((self.1.y - self.0.y) as f64) / (self.1.x - self.0.x) as f64;
