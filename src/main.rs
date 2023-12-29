@@ -7,7 +7,7 @@ pub mod bounds;
 use crate::prelude::*;
 
 fn main() {
-    let triangle = Triangle(Vertex::new_with_depth(5, 0, -2), Vertex::new(0, 10), Vertex::new(10, 10));
+    let triangle = Triangle(Vertex::new_with_depth(5, 0, -2), Vertex::new_with_depth(0, 10, 4), Vertex::new(10, 10));
     let bounds = triangle.get_bounds().pad(1);
     let depth_symbols: Vec<_> =  ".:-=+*#%@".chars().collect();
 
@@ -17,7 +17,7 @@ fn main() {
             let point = Vertex::new(bounds.min.x + x as i32, bounds.min.y + y as i32);
             if let Some(mut depth) = triangle.contains_point_with_depth(&point) {
                 depth = bounds.normalized_depth(depth);
-
+                debug_assert!(depth >= 0. && depth <= 1.);
                 let index = (depth * (depth_symbols.len() - 1) as f64) as usize;
                 
                 print!("{}", depth_symbols.get(index).unwrap())
