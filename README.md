@@ -1,5 +1,5 @@
-# rats
+# rats - rasterize a triangle, silly
 
-#### Video Demo: [](https://uwu.com)
+#### Video Demo: [https://github.com/uwu](https://uwu.com)
 
 #### Description:

@@ -3,6 +3,7 @@ pub mod vertex;
 pub mod line;
 pub mod triangle;
 pub mod bounds;
+pub mod renderer;
 
 use crate::prelude::*;
 
@@ -12,24 +13,22 @@ fn main() {
         Vertex::new_with_depth(-21., 10., 4.),
         Vertex::new_with_depth(50., 5., 14.),
     );
-    let bounds = triangle.get_bounds().pad(3.);
-    let depth_symbols: Vec<_> =  ".:-=+*#%@".chars().collect();
+    let new_triangle = Triangle(
+        Vertex::new_with_depth(20., 50., 23.),
+        Vertex::new_with_depth(-10., 5., -4.),
+        Vertex::new_with_depth(60., 32., 10.),
+    );
+    let mut bounds = triangle.get_bounds();
+    bounds += new_triangle.get_bounds();
+    bounds.pad(2.);
 
-    let (width, height) = bounds.size();
-    for y in 0..=height {
-        for x in 0..=width {
-            let point = Vertex::new(bounds.min.x + x as vertex::VertexComponent, bounds.min.y + y as vertex::VertexComponent);
-            if let Some(mut depth) = triangle.contains_point_with_depth(&point) {
-                depth = bounds.normalized_depth(depth);
-                debug_assert!(depth >= 0. && depth <= 1.);
-                let index = (depth * (depth_symbols.len() - 1) as f64) as usize;
-                
-                print!("{}", depth_symbols.get(index).unwrap())
-            } else { 
-                print!(" ")
-            }
-        }
-        println!()
-    }
+    let mut renderer = Renderer::new_from_bounds(&bounds);
+
+    renderer.set_depth_test_mode(DepthTestMode::DepthTest);
+    renderer.clear();
+    renderer.draw_triangle(&triangle);
+    renderer.draw_triangle(&new_triangle);
+    renderer.render();
+
     println!("{:?}", bounds);
 }

@@ -1,18 +1,18 @@
-use crate::vertex::{Vertex, ContainsPoint, self};
+use crate::prelude::{Vertex, ContainsPoint, VertexComponent};
 
 pub trait GetBounds {
     fn get_bounds(&self) -> Bounds;
 }
 
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug, Clone, Copy, Default)]
 pub struct Bounds {
-    pub(crate) min: Vertex,
-    pub(crate) max: Vertex,
+    pub min: Vertex,
+    pub max: Vertex,
 }
 
 impl Bounds {
     #[allow(dead_code)]
-    pub fn pad(&mut self, padding: crate::vertex::VertexComponent) -> Self {
+    pub fn pad(&mut self, padding: VertexComponent) -> Self {
         let (min_z, max_z) = (self.min.z, self.max.z);
         self.min -= padding;
         self.max += padding;
@@ -41,7 +41,7 @@ impl Bounds {
         let z_size = self.max.z - self.min.z;
 
         // Cannot normalize value :(
-        if z_size == vertex::VertexComponent::default() {
+        if z_size == VertexComponent::default() {
             return 0.
         }
 

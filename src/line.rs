@@ -1,6 +1,6 @@
-use crate::{vertex::{Vertex, ContainsPoint}, bounds::{GetBounds, Bounds}};
+use crate::prelude::{Vertex, ContainsPoint, GetBounds, Bounds};
 
-const POINT_IN_LINE_THRESHOLD: f64 = 0.5;
+pub const POINT_IN_LINE_THRESHOLD: f64 = 0.5;
 
 /// A Line (technically a line segment) contains 
 #[derive(Debug, Clone, Copy)]
