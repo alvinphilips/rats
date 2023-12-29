@@ -2,7 +2,7 @@ use crate::prelude::{Vertex, ContainsPoint, GetBounds, Bounds};
 
 pub const POINT_IN_LINE_THRESHOLD: f64 = 0.5;
 
-/// A Line (technically a line segment) contains 
+/// A [`Line`] *(technically a line segment)* contains a start and end [`Vertex`],
 #[derive(Debug, Clone, Copy)]
 pub struct Line(pub Vertex, pub Vertex);
 

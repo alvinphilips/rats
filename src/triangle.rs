@@ -1,4 +1,4 @@
-use crate::{vertex::{Vertex, ContainsPoint}, bounds::{GetBounds, Bounds}};
+use crate::{vertex::{Vertex, ContainsPoint}, bounds::{GetBounds, Bounds}, line::Line};
 
 #[derive(Debug)]
 pub struct Triangle(pub Vertex, pub Vertex, pub Vertex);
@@ -14,6 +14,10 @@ impl Triangle {
         let w2 = ((point.x - a.x) as f64 - w1 * (b.x - a.x) as f64)/ (c.x - a.x) as f64;
 
         (w1, w2)
+    }
+
+    pub fn get_lines(&self) -> [Line; 3] {
+        [Line(self.0, self.1), Line(self.1, self.2), Line(self.2, self.0)]
     }
 }
 

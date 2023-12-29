@@ -1,6 +1,7 @@
 use crate::prelude::{Bounds, Triangle, VertexComponent, Vertex, ContainsPoint};
 
 pub const CLEAR_CHARACTER_INDEX: u8 = 0;
+// See: https://paulbourke.net/dataformats/asciiart/
 pub const GRAYSCALE_CHARACTER_RANGE: &str = " .:-=+*#%@";
 
 pub type Texture = Vec<Vec<u8>>;

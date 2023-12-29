@@ -18,6 +18,7 @@ fn main() {
         Vertex::new_with_depth(-10., 5., -4.),
         Vertex::new_with_depth(60., 32., 10.),
     );
+
     let mut bounds = triangle.get_bounds();
     bounds += new_triangle.get_bounds();
     bounds.pad(2.);

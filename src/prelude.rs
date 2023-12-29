@@ -1,5 +1,6 @@
 pub use crate::vertex::Vertex;
 pub use crate::triangle::Triangle;
+pub use crate::line::Line;
 pub use crate::bounds::Bounds;
 
 pub use crate::bounds::GetBounds;
