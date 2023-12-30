@@ -1,4 +1,4 @@
-use crate::prelude::{Vertex, ContainsPoint, VertexComponent};
+use crate::prelude::{ContainsPoint, Vertex, VertexComponent};
 
 pub trait GetBounds {
     fn get_bounds(&self) -> Bounds;
@@ -26,7 +26,7 @@ impl Bounds {
     }
 
     /// Size of the [`Bounds`], represented as a tuple of two [`usize`]s, denoting the width and height.
-    /// 
+    ///
     /// The `z` component is ignored.
     #[allow(dead_code)]
     pub fn size(&self) -> (usize, usize) {
@@ -43,7 +43,7 @@ impl Bounds {
 
         // Cannot normalize value :(
         if z_size == VertexComponent::default() {
-            return 0.
+            return 0.;
         }
 
         let min_depth = depth - self.min.z as f64;
@@ -59,7 +59,7 @@ impl core::ops::Add for Bounds {
     fn add(self, rhs: Self) -> Self::Output {
         Self {
             min: self.min.min(rhs.min),
-            max: self.max.max(rhs.max)
+            max: self.max.max(rhs.max),
         }
     }
 }

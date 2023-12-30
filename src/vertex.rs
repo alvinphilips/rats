@@ -13,11 +13,7 @@ impl Vertex {
     }
 
     pub fn new_with_depth(x: VertexComponent, y: VertexComponent, depth: VertexComponent) -> Self {
-        Self {
-            x,
-            y,
-            z: depth
-        }
+        Self { x, y, z: depth }
     }
     pub fn min(self, other: Self) -> Self {
         Self {
@@ -40,13 +36,13 @@ impl core::cmp::PartialOrd for Vertex {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
         use std::cmp::Ordering;
         if self == other {
-            return Some(Ordering::Equal)
+            return Some(Ordering::Equal);
         }
         if self.x <= other.x && self.y <= other.y && self.z <= other.z {
-            return Some(Ordering::Less)
+            return Some(Ordering::Less);
         }
         if self.x >= other.x && self.y >= other.y && self.z >= other.z {
-            return Some(Ordering::Greater)
+            return Some(Ordering::Greater);
         }
         None
     }

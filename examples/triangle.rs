@@ -1,9 +1,9 @@
-use rats::{prelude::*, renderer};
+use rats::prelude::*;
 
 fn main() {
     let triangle = Triangle(
         Vertex::new_with_depth(0., 0., 0.),
-        Vertex::new_with_depth(20., -20., 5.),
+        Vertex::new_with_depth(20., -15., 5.),
         Vertex::new_with_depth(40., 0., -5.),
     );
     let bounds = triangle.get_bounds().pad(10.);

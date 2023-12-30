@@ -1,4 +1,4 @@
-use crate::prelude::{Vertex, ContainsPoint, GetBounds, Bounds};
+use crate::prelude::{Bounds, ContainsPoint, GetBounds, Vertex};
 
 pub const POINT_IN_LINE_THRESHOLD: f64 = 0.5;
 

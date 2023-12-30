@@ -14,7 +14,7 @@ fn main() {
 
     let mut bounds = triangle.get_bounds();
     bounds += new_triangle.get_bounds();
-    bounds.pad(2.);
+    bounds.pad(5.);
 
     let mut renderer = Renderer::new_from_bounds(&bounds);
 
