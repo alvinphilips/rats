@@ -1,7 +1,10 @@
 [package]
-name = "rats"
+name = "ratser"
+description = "rasterize a triangle, silly"
+repository = "https://github.com/alvinphilips/rats"
 version = "0.1.0"
 edition = "2021"
+license = "MIT"
 
 [lib]
 crate-type = ["lib"]

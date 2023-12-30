@@ -1,4 +1,4 @@
-use rats::prelude::*;
+use ratser::prelude::*;
 
 fn main() {
     let triangles = vec![
@@ -14,11 +14,7 @@ fn main() {
         ),
     ];
 
-    let mut bounds = Bounds::default();
-    for triangle in &triangles {
-        bounds += triangle.get_bounds();
-    }
-    bounds.pad(5.);
+    let mut bounds = triangles.get_bounds().pad(5.);
 
     // Hack to manually alter the character the shapes are drawn with :P
     bounds.min.z = -2.;
@@ -28,9 +24,7 @@ fn main() {
 
     renderer.clear();
 
-    for triangle in &triangles {
-        renderer.draw_triangle(triangle);
-    }
+    renderer.draw_triangles(&triangles);
 
     renderer.render();
 }

@@ -1,4 +1,4 @@
-use crate::prelude::{Bounds, ContainsPoint, Triangle, Vertex, VertexComponent};
+use crate::prelude::{Bounds, ContainsPoint, Triangle, TriangleList, Vertex, VertexComponent};
 
 pub const CLEAR_CHARACTER_INDEX: u8 = 0;
 // See: https://paulbourke.net/dataformats/asciiart/
@@ -73,6 +73,12 @@ impl Renderer {
                     self.texture[y][x] = index;
                 }
             }
+        }
+    }
+
+    pub fn draw_triangles(&mut self, triangles: &TriangleList) {
+        for triangle in triangles {
+            self.draw_triangle(triangle);
         }
     }
 

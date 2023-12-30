@@ -1,8 +1,7 @@
-use crate::{
-    bounds::{Bounds, GetBounds},
-    line::Line,
-    vertex::{ContainsPoint, Vertex},
-};
+use crate::prelude::{Bounds, ContainsPoint, GetBounds, Line, Vertex};
+
+/// Alias for [`Vec`] of [`Triangle`]s.
+pub type TriangleList = Vec<Triangle>;
 
 #[derive(Debug)]
 pub struct Triangle(pub Vertex, pub Vertex, pub Vertex);
@@ -57,5 +56,15 @@ impl GetBounds for Triangle {
         let max = self.0.max(self.1).max(self.2);
 
         Bounds { min, max }
+    }
+}
+
+impl GetBounds for TriangleList {
+    fn get_bounds(&self) -> Bounds {
+        let mut bounds = Bounds::default();
+        for triangle in self {
+            bounds += triangle.get_bounds();
+        }
+        bounds
     }
 }

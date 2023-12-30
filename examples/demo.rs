@@ -1,4 +1,4 @@
-use rats::prelude::*;
+use ratser::prelude::*;
 
 fn main() {
     let triangle = Triangle(
